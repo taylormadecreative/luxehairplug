@@ -1,0 +1,2474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxehairplug | Slay Your Look ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script async src="https://www.instagram.com/embed.js"></script>
+    <style>
+        /* Custom Font */
+        @font-face {
+            font-family: 'Social Club';
+            src: url('Fonts/Social Club.ttf') format('truetype'),
+                 url('Fonts/Social Club.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --pink-soft: #FFD6E8;
+            --pink-medium: #FF9ECD;
+            --pink-hot: #FF5CA8;
+            --purple-soft: #E8D6FF;
+            --purple-medium: #C9A0FF;
+            --purple-deep: #A855F7;
+            --blue-y2k: #7DD3FC;
+            --cyan-pop: #22D3EE;
+            --gold: #FFD700;
+            --gold-soft: #FFF0B3;
+            --cream: #FFF5F8;
+            --text-dark: #581C87;
+            --text-medium: #9333EA;
+            --white: #FFFFFF;
+            --black-soft: #2D2D2D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--pink-soft);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--pink-hot), var(--purple-deep), var(--cyan-pop));
+            border-radius: 10px;
+        }
+
+        /* Floating Decorations */
+        .floating-decor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.6;
+        }
+
+        .sparkle {
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .heart {
+            font-size: 24px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .star {
+            font-size: 18px;
+            color: var(--gold);
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 249, 245, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 158, 205, 0.3);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--pink-hot), var(--purple-medium));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--pink-hot);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            position: relative;
+            padding: 2rem 4rem;
+            background: url('images/banner image.png') right center / cover no-repeat;
+            background-color: var(--pink-soft);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255, 214, 232, 0.9) 0%, rgba(255, 214, 232, 0.6) 40%, transparent 70%);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                align-items: center;
+                text-align: center;
+                padding: 2rem;
+                background-position: center center;
+            }
+            .hero::before {
+                background: rgba(255, 214, 232, 0.85);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            animation: titleReveal 1.5s ease-out forwards;
+        }
+
+        @keyframes titleReveal {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-tagline {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: 300;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--pink-hot), var(--purple-deep));
+            color: white;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+            animation: fadeIn 1.5s ease-out 0.8s both;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(155, 93, 229, 0.4);
+        }
+
+        .hero-images {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1.5s ease-out 1.2s both;
+        }
+
+        .hero-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 10px 30px rgba(155, 93, 229, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(155, 93, 229, 0.4);
+        }
+
+        .hero-image:nth-child(2) {
+            transform: translateY(-20px);
+        }
+
+        .hero-image:nth-child(2):hover {
+            transform: translateY(-20px) scale(1.1) rotate(-5deg);
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Marquee */
+        .marquee-container {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(90deg, var(--pink-hot), var(--purple-deep), var(--cyan-pop), var(--purple-deep), var(--pink-hot));
+            background-size: 200% 100%;
+            animation: marqueeGradient 5s ease-in-out infinite;
+            padding: 1rem 0;
+        }
+
+        @keyframes marqueeGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .marquee {
+            display: flex;
+            animation: marquee 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee span {
+            display: inline-flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 0 2rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: white;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--white);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: var(--text-dark);
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-medium);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, var(--cream) 0%, var(--pink-soft) 100%);
+            border-radius: 30px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 158, 205, 0.3);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 107, 179, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(155, 93, 229, 0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .service-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.6rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .service-card p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .service-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .service-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            border-bottom: 1px solid rgba(255, 158, 205, 0.2);
+        }
+
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+
+        .service-list li::before {
+            content: '✦';
+            color: var(--pink-hot);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--pink-soft) 50%, var(--purple-soft) 100%);
+            position: relative;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 158, 205, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--pink-hot), var(--purple-medium), var(--gold));
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(155, 93, 229, 0.15);
+        }
+
+        .price-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .price-card h3 span {
+            font-size: 1.2rem;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed rgba(255, 158, 205, 0.3);
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-item .service-name {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+        }
+
+        .price-item .price {
+            font-weight: 600;
+            color: white;
+            font-size: 1rem;
+            background: linear-gradient(135deg, var(--pink-hot), var(--purple-deep));
+            padding: 0.3rem 0.85rem;
+            border-radius: 20px;
+        }
+
+        .price-note {
+            font-size: 0.8rem;
+            color: var(--text-medium);
+            font-style: italic;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--white) 0%, var(--purple-soft) 100%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--pink-soft), var(--purple-soft));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 179, 0.2), rgba(155, 93, 229, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 50px rgba(155, 93, 229, 0.2);
+        }
+
+        .gallery-placeholder {
+            font-size: 3rem;
+            opacity: 0.5;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(93, 64, 51, 0.8));
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            font-family: 'Italiana', serif;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* Booking Section */
+        .booking {
+            padding: 6rem 2rem;
+            background: var(--white);
+            position: relative;
+        }
+
+        .booking::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--pink-medium), transparent);
+        }
+
+        .booking-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .booking-form {
+            background: linear-gradient(145deg, var(--cream) 0%, var(--pink-soft) 50%, var(--purple-soft) 100%);
+            border-radius: 40px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(155, 93, 229, 0.1);
+            border: 1px solid rgba(255, 158, 205, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 158, 205, 0.3);
+            border-radius: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            background: var(--white);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--pink-hot);
+            box-shadow: 0 0 0 4px rgba(255, 107, 179, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--pink-hot), var(--purple-deep));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(155, 93, 229, 0.4);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--purple-deep) 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-love {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Payment & Deposit Styles */
+        .deposit-info {
+            background: linear-gradient(135deg, var(--gold-soft), rgba(255, 215, 0, 0.3));
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+
+        .deposit-info.visible {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .deposit-info h4 {
+            font-family: 'Italiana', serif;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .deposit-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--purple-deep);
+            margin: 0.5rem 0;
+        }
+
+        .deposit-note {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+
+        .service-total {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            margin-bottom: 0.25rem;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .payment-options button {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 15px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pay-deposit-btn {
+            background: linear-gradient(135deg, var(--pink-hot), var(--purple-deep));
+            color: white;
+            border: none;
+            box-shadow: 0 8px 25px rgba(155, 93, 229, 0.3);
+        }
+
+        .pay-deposit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(155, 93, 229, 0.4);
+        }
+
+        .pay-later-btn {
+            background: transparent;
+            border: 2px solid var(--pink-medium);
+            color: var(--text-dark);
+        }
+
+        .pay-later-btn:hover {
+            background: var(--pink-soft);
+        }
+
+        /* Payment Modal */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(92, 64, 51, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .payment-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .payment-modal-content {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 2.5rem;
+            max-width: 450px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .payment-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-medium);
+            transition: color 0.3s ease;
+        }
+
+        .payment-modal-close:hover {
+            color: var(--pink-hot);
+        }
+
+        .payment-modal h3 {
+            font-family: 'Italiana', serif;
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-modal-subtitle {
+            text-align: center;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .payment-summary {
+            background: linear-gradient(135deg, var(--cream), var(--pink-soft));
+            border-radius: 15px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .payment-summary-row.total {
+            border-top: 2px dashed var(--pink-medium);
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--purple-deep);
+        }
+
+        #card-element {
+            padding: 1rem;
+            border: 2px solid rgba(255, 158, 205, 0.3);
+            border-radius: 15px;
+            background: var(--white);
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        #card-element:focus-within {
+            border-color: var(--pink-hot);
+        }
+
+        #card-errors {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            min-height: 1.5rem;
+        }
+
+        .stripe-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--text-medium);
+            opacity: 0.8;
+        }
+
+        .stripe-badge svg {
+            height: 20px;
+        }
+
+        .processing {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .processing .submit-btn::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            margin-left: 0.5rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Floating Book Now Button */
+        .floating-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .floating-cta a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--pink-hot), var(--purple-deep), var(--cyan-pop));
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease-in-out infinite, pulse 2s ease-in-out infinite;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .floating-cta a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(155, 93, 229, 0.5);
+        }
+
+        .floating-cta span {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--pink-hot);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(255, 92, 168, 0.3);
+        }
+
+        /* Section CTAs */
+        .section-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--pink-hot), var(--purple-deep));
+            color: white;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+            margin-top: 2rem;
+        }
+
+        .section-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(155, 93, 229, 0.4);
+        }
+
+        .section-cta.secondary {
+            background: transparent;
+            border: 2px solid var(--purple-deep);
+            color: var(--purple-deep);
+            box-shadow: none;
+        }
+
+        .section-cta.secondary:hover {
+            background: linear-gradient(135deg, var(--pink-hot), var(--purple-deep));
+            border-color: transparent;
+            color: white;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        /* Instagram Portfolio Section */
+        .instagram-portfolio {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--purple-soft) 0%, var(--cream) 100%);
+            text-align: center;
+        }
+
+        .instagram-feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .instagram-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(155, 93, 229, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 158, 205, 0.2);
+        }
+
+        .instagram-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(155, 93, 229, 0.2);
+        }
+
+        .instagram-card-image {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--pink-soft), var(--purple-soft));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instagram-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .instagram-card:hover .instagram-card-image img {
+            transform: scale(1.05);
+        }
+
+        .instagram-card-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 179, 0.1), rgba(155, 93, 229, 0.1));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .instagram-card-content {
+            padding: 1.5rem;
+        }
+
+        .instagram-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .instagram-card p {
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .instagram-banner {
+            background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+            padding: 2rem;
+            border-radius: 25px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .instagram-banner a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .instagram-banner a:hover {
+            opacity: 0.9;
+        }
+
+        .instagram-banner .ig-icon {
+            font-size: 2rem;
+        }
+
+        .instagram-handle {
+            font-family: 'Italiana', serif;
+            letter-spacing: 2px;
+        }
+
+        .instagram-subtext {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Instagram Embed Section */
+        .instagram-embed-section {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            text-align: center;
+        }
+
+        .instagram-embed-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+        }
+
+        .instagram-embed-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            justify-items: center;
+        }
+
+        .instagram-embed-container iframe {
+            border-radius: 20px !important;
+            box-shadow: 0 10px 40px rgba(155, 93, 229, 0.15);
+        }
+
+        .instagram-embed-container blockquote {
+            margin: 0 !important;
+            max-width: 400px !important;
+            min-width: 300px !important;
+            border-radius: 20px !important;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(155, 93, 229, 0.15);
+        }
+
+        /* Instagram Profile Widget */
+        .instagram-profile-widget {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(155, 93, 229, 0.15);
+            border: 1px solid rgba(255, 158, 205, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .instagram-profile-widget:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(155, 93, 229, 0.2);
+        }
+
+        .ig-profile-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .ig-profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--cream), var(--pink-soft));
+        }
+
+        .ig-profile-pic {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid transparent;
+            background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737) border-box;
+            padding: 3px;
+        }
+
+        .ig-profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .ig-profile-info {
+            flex: 1;
+        }
+
+        .ig-profile-info h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .ig-profile-info p {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            margin-bottom: 0.5rem;
+        }
+
+        .ig-follow-btn {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .ig-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .ig-preview-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .ig-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .ig-preview-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .ig-preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ig-preview-item:hover .ig-preview-overlay {
+            opacity: 1;
+        }
+
+        .ig-preview-overlay span {
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ig-view-more {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .ig-view-more:hover {
+            opacity: 0.9;
+        }
+
+        .ig-view-more .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .ig-profile-link:hover .ig-view-more .arrow {
+            transform: translateX(5px);
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 249, 245, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 99;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav a {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--pink-hot);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 6rem;
+            }
+
+            .booking-form {
+                padding: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cursor sparkle effect */
+        .cursor-sparkle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Decorations -->
+    <div class="floating-decor sparkle" style="top: 15%; left: 5%;"></div>
+    <div class="floating-decor heart" style="top: 25%; right: 8%;">💕</div>
+    <div class="floating-decor star" style="top: 40%; left: 3%;">✦</div>
+    <div class="floating-decor sparkle" style="top: 60%; right: 5%;"></div>
+    <div class="floating-decor heart" style="top: 75%; left: 8%;">💖</div>
+    <div class="floating-decor star" style="top: 85%; right: 10%;">✦</div>
+
+    <!-- Cursor Sparkle -->
+    <div class="cursor-sparkle" id="cursorSparkle"></div>
+
+    <!-- Floating Book Now Button -->
+    <div class="floating-cta">
+        <a href="#booking" title="Book Now">📅</a>
+        <span>Book Now</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo">LUXEHAIRPLUG</a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Prices</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#booking">Book Now</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-menu" onclick="toggleMobileMenu()">✕</button>
+        <a href="#services" onclick="toggleMobileMenu()">Services</a>
+        <a href="#pricing" onclick="toggleMobileMenu()">Prices</a>
+        <a href="#portfolio" onclick="toggleMobileMenu()">Portfolio</a>
+        <a href="#booking" onclick="toggleMobileMenu()">Book Now</a>
+        <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Luxehairplug</h1>
+            <p class="hero-tagline">Slay Your Look, Own Your Crown</p>
+            <a href="#booking" class="hero-cta">
+                Book Your Glow Up
+            </a>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <span>✦ Knotless ✦ Soft Locs ✦ Island Twist ✦ Wigs ✦ Stitch Braids ✦ Quick Weave ✦ Locs ✦ Slay ✦</span>
+            <span>✦ Knotless ✦ Soft Locs ✦ Island Twist ✦ Wigs ✦ Stitch Braids ✦ Quick Weave ✦ Locs ✦ Slay ✦</span>
+            <span>✦ Knotless ✦ Soft Locs ✦ Island Twist ✦ Wigs ✦ Stitch Braids ✦ Quick Weave ✦ Locs ✦ Slay ✦</span>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header reveal">
+            <h2>Services</h2>
+            <p>Premium styles crafted with love and expertise</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <img src="images/long braids.png" alt="Knotless Braids" class="service-card-image">
+                <h3>Braids</h3>
+                <p>Protective styles that keep you slaying for weeks</p>
+                <ul class="service-list">
+                    <li>Knotless Braids (all sizes)</li>
+                    <li>Stitch Braids & Freestyle</li>
+                    <li>Fulani Braids</li>
+                    <li>2 Braids</li>
+                    <li>Men's Cornrows</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <img src="images/soft locs.png" alt="Soft Locs" class="service-card-image">
+                <h3>Locs & Twists</h3>
+                <p>Beautiful texture styles for every vibe</p>
+                <ul class="service-list">
+                    <li>Soft Locs</li>
+                    <li>Island Twist</li>
+                    <li>Starter Locs</li>
+                    <li>Retwist & Two Strand</li>
+                    <li>Barrels</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <img src="images/quick weave.png" alt="Quick Weave" class="service-card-image">
+                <h3>Wigs & Weaves</h3>
+                <p>Flawless installs for that snatched look</p>
+                <ul class="service-list">
+                    <li>Wig Installs</li>
+                    <li>Quick Weave</li>
+                    <li>Middle/Side Part</li>
+                    <li>Fulani Quick Weave</li>
+                    <li>Styling Add-On</li>
+                </ul>
+            </div>
+        </div>
+        <div class="cta-container reveal">
+            <a href="#booking" class="section-cta">Book Now - $20 Deposit</a>
+            <a href="#pricing" class="section-cta secondary">View Prices</a>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header reveal">
+            <h2>Prices</h2>
+            <p>Affordable luxury for every style</p>
+        </div>
+        <div class="pricing-grid">
+            <!-- Wigs -->
+            <div class="price-card reveal">
+                <h3><span>💫</span> Wigs</h3>
+                <div class="price-item">
+                    <span class="service-name">Install</span>
+                    <span class="price">$50</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">+ Style</span>
+                    <span class="price">+$10</span>
+                </div>
+            </div>
+
+            <!-- Quick Weave -->
+            <div class="price-card reveal">
+                <h3><span>✨</span> Quick Weave</h3>
+                <div class="price-item">
+                    <span class="service-name">Middle/Side Part</span>
+                    <span class="price">$70</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Fulani</span>
+                    <span class="price">$85</span>
+                </div>
+            </div>
+
+            <!-- Island Twist -->
+            <div class="price-card reveal">
+                <h3><span>🌺</span> Island Twist</h3>
+                <div class="price-item">
+                    <span class="service-name">Small</span>
+                    <span class="price">$115</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Medium</span>
+                    <span class="price">$100</span>
+                </div>
+            </div>
+
+            <!-- Soft Locs -->
+            <div class="price-card reveal">
+                <h3><span>🦋</span> Soft Locs</h3>
+                <div class="price-item">
+                    <span class="service-name">Small</span>
+                    <span class="price">$130</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Medium</span>
+                    <span class="price">$100</span>
+                </div>
+            </div>
+
+            <!-- Knotless -->
+            <div class="price-card reveal">
+                <h3><span>👑</span> Knotless</h3>
+                <div class="price-item">
+                    <span class="service-name">Xtra Small</span>
+                    <span class="price">$180</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Small</span>
+                    <span class="price">$130</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Medium</span>
+                    <span class="price">$115</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Large</span>
+                    <span class="price">$90</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Bob</span>
+                    <span class="price">$100</span>
+                </div>
+            </div>
+
+            <!-- Stitch Braids -->
+            <div class="price-card reveal">
+                <h3><span>💅</span> Stitch Braids</h3>
+                <div class="price-item">
+                    <span class="service-name">Small Freestyle</span>
+                    <span class="price">$115</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Freestyle</span>
+                    <span class="price">$105</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Fulani Braids</span>
+                    <span class="price">$115</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">2 Braids</span>
+                    <span class="price">$40</span>
+                </div>
+            </div>
+
+            <!-- Natural -->
+            <div class="price-card reveal">
+                <h3><span>🌸</span> Natural</h3>
+                <div class="price-item">
+                    <span class="service-name">Men's Cornrows</span>
+                    <span class="price">$45</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Plaits</span>
+                    <span class="price">$60</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Twist</span>
+                    <span class="price">$45</span>
+                </div>
+            </div>
+
+            <!-- Locs -->
+            <div class="price-card reveal">
+                <h3><span>💖</span> Locs</h3>
+                <div class="price-item">
+                    <span class="service-name">Starter Locs</span>
+                    <span class="price">$65</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Retwist</span>
+                    <span class="price">$45</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Two Strand</span>
+                    <span class="price">$65</span>
+                </div>
+                <div class="price-item">
+                    <span class="service-name">Barrels</span>
+                    <span class="price">$75</span>
+                </div>
+            </div>
+        </div>
+        <div class="cta-container reveal">
+            <a href="#booking" class="section-cta">Pay $20 Deposit to Book</a>
+            <a href="https://www.instagram.com/_luxehairplug/" target="_blank" class="section-cta secondary">See My Work</a>
+        </div>
+    </section>
+
+    <!-- Instagram Portfolio Section -->
+    <section class="instagram-portfolio" id="portfolio">
+        <div class="section-header reveal">
+            <h2>My Work</h2>
+            <p>Real styles on real clients - follow for more inspo!</p>
+        </div>
+
+        <div class="instagram-feed">
+            <div class="instagram-card reveal">
+                <div class="instagram-card-image">
+                    <img src="images/long braids.png" alt="Knotless Braids by Luxehairplug">
+                </div>
+                <div class="instagram-card-content">
+                    <h4>Knotless Braids</h4>
+                    <p>Clean parts, lightweight, and lasts for weeks. The perfect protective style.</p>
+                </div>
+            </div>
+            <div class="instagram-card reveal">
+                <div class="instagram-card-image">
+                    <img src="images/soft locs.png" alt="Soft Locs by Luxehairplug">
+                </div>
+                <div class="instagram-card-content">
+                    <h4>Soft Locs</h4>
+                    <p>Bohemian vibes with a soft, natural look that turns heads everywhere.</p>
+                </div>
+            </div>
+            <div class="instagram-card reveal">
+                <div class="instagram-card-image">
+                    <img src="images/wig install.png" alt="Wig Install by Luxehairplug">
+                </div>
+                <div class="instagram-card-content">
+                    <h4>Wig Installs</h4>
+                    <p>Seamless, natural-looking installs that look like it's growing from your scalp.</p>
+                </div>
+            </div>
+            <div class="instagram-card reveal">
+                <div class="instagram-card-image">
+                    <img src="images/quick weave.png" alt="Quick Weave by Luxehairplug">
+                </div>
+                <div class="instagram-card-content">
+                    <h4>Quick Weave</h4>
+                    <p>Bold colors and flawless styling that lets you switch up your look instantly.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instagram Feed Section -->
+        <div class="instagram-embed-section reveal">
+            <p class="instagram-embed-label">See more styles, reels & transformations on Instagram</p>
+            <div class="instagram-profile-widget">
+                <a href="https://www.instagram.com/_luxehairplug/" target="_blank" class="ig-profile-link">
+                    <div class="ig-profile-header">
+                        <div class="ig-profile-pic">
+                            <img src="images/soft locs.png" alt="Luxehairplug">
+                        </div>
+                        <div class="ig-profile-info">
+                            <h4>@_luxehairplug</h4>
+                            <p>Braids, Locs, Wigs & More</p>
+                            <span class="ig-follow-btn">View Profile</span>
+                        </div>
+                    </div>
+                    <div class="ig-preview-grid">
+                        <div class="ig-preview-item">
+                            <img src="images/soft locs.png" alt="Soft Locs">
+                            <div class="ig-preview-overlay">
+                                <span>Reels & Photos</span>
+                            </div>
+                        </div>
+                        <div class="ig-preview-item">
+                            <img src="images/quick weave.png" alt="Quick Weave">
+                            <div class="ig-preview-overlay">
+                                <span>Transformations</span>
+                            </div>
+                        </div>
+                        <div class="ig-preview-item">
+                            <img src="images/wig install.png" alt="Wig Install">
+                            <div class="ig-preview-overlay">
+                                <span>Latest Work</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ig-view-more">
+                        <span>View all posts on Instagram</span>
+                        <span class="arrow">→</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="cta-container reveal" style="margin-top: 3rem;">
+            <a href="#booking" class="section-cta">Book Your Style - $20 Deposit</a>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking" id="booking">
+        <div class="section-header reveal">
+            <h2>Book Your Appointment</h2>
+            <p>Ready to get your hair done? Let's make it happen!</p>
+        </div>
+        <div class="booking-container">
+            <form class="booking-form reveal" id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="What should I call you?" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                </div>
+                <div class="form-group">
+                    <label for="instagram">Instagram Handle</label>
+                    <input type="text" id="instagram" name="instagram" placeholder="@yourusername">
+                </div>
+                <div class="form-group">
+                    <label for="service">Service</label>
+                    <select id="service" name="service" required>
+                        <option value="">Choose your service...</option>
+                        <optgroup label="Wigs">
+                            <option value="wig-install">Wig Install - $50</option>
+                            <option value="wig-install-style">Wig Install + Style - $60</option>
+                        </optgroup>
+                        <optgroup label="Quick Weave">
+                            <option value="qw-middle-side">Middle/Side Part - $70</option>
+                            <option value="qw-fulani">Fulani Quick Weave - $85</option>
+                        </optgroup>
+                        <optgroup label="Island Twist">
+                            <option value="island-small">Island Twist Small - $115</option>
+                            <option value="island-medium">Island Twist Medium - $100</option>
+                        </optgroup>
+                        <optgroup label="Soft Locs">
+                            <option value="softlocs-small">Soft Locs Small - $130</option>
+                            <option value="softlocs-medium">Soft Locs Medium - $100</option>
+                        </optgroup>
+                        <optgroup label="Knotless">
+                            <option value="knotless-xs">Knotless Xtra Small - $180</option>
+                            <option value="knotless-small">Knotless Small - $130</option>
+                            <option value="knotless-medium">Knotless Medium - $115</option>
+                            <option value="knotless-large">Knotless Large - $90</option>
+                            <option value="knotless-bob">Knotless Bob - $100</option>
+                        </optgroup>
+                        <optgroup label="Stitch Braids">
+                            <option value="stitch-small-freestyle">Small Freestyle - $115</option>
+                            <option value="stitch-freestyle">Freestyle - $105</option>
+                            <option value="stitch-fulani">Fulani Braids - $115</option>
+                            <option value="stitch-2braids">2 Braids - $40</option>
+                        </optgroup>
+                        <optgroup label="Natural">
+                            <option value="natural-cornrows">Men's Cornrows - $45</option>
+                            <option value="natural-plaits">Plaits - $60</option>
+                            <option value="natural-twist">Twist - $45</option>
+                        </optgroup>
+                        <optgroup label="Locs">
+                            <option value="locs-starter">Starter Locs - $65</option>
+                            <option value="locs-retwist">Retwist - $45</option>
+                            <option value="locs-twostrand">Two Strand - $65</option>
+                            <option value="locs-barrels">Barrels - $75</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Additional Notes</label>
+                    <textarea id="notes" name="notes" placeholder="Tell me about your dream style, hair inspo, or any questions!"></textarea>
+                </div>
+
+                <!-- Deposit Info -->
+                <div class="deposit-info" id="depositInfo">
+                    <h4>Secure Your Spot</h4>
+                    <p class="service-total">Service Total: <span id="serviceTotal">$0</span></p>
+                    <p class="deposit-amount">$20 Deposit</p>
+                    <p class="deposit-note">Non-refundable deposit to confirm your appointment. Remaining balance due at appointment.</p>
+                </div>
+
+                <div class="payment-options" id="paymentOptions" style="display: none;">
+                    <button type="button" class="pay-deposit-btn" onclick="openPaymentModal()">
+                        Pay $20 Deposit
+                    </button>
+                    <button type="submit" class="pay-later-btn">
+                        Request Only
+                    </button>
+                </div>
+
+                <button type="submit" class="submit-btn" id="defaultSubmit">Send Booking Request ✨</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="paymentModal">
+        <div class="payment-modal-content">
+            <button class="payment-modal-close" onclick="closePaymentModal()">&times;</button>
+            <h3>Secure Your Appointment</h3>
+            <p class="payment-modal-subtitle">Pay your deposit to confirm booking</p>
+
+            <div class="payment-summary">
+                <div class="payment-summary-row">
+                    <span>Service</span>
+                    <span id="modalServiceName">-</span>
+                </div>
+                <div class="payment-summary-row">
+                    <span>Appointment Date</span>
+                    <span id="modalDate">-</span>
+                </div>
+                <div class="payment-summary-row total">
+                    <span>Deposit Due Now</span>
+                    <span>$20.00</span>
+                </div>
+            </div>
+
+            <form id="payment-form">
+                <div id="card-element"></div>
+                <div id="card-errors" role="alert"></div>
+                <button type="submit" class="submit-btn" id="payBtn">
+                    Pay $20 Deposit
+                </button>
+            </form>
+
+            <div class="stripe-badge">
+                <svg viewBox="0 0 60 25" xmlns="http://www.w3.org/2000/svg" width="60" height="25" class="UserLogo variant-- "><title>Stripe logo</title><path fill="#635bff" d="M59.64 14.28h-8.06c.19 1.93 1.6 2.55 3.2 2.55 1.64 0 2.96-.37 4.05-.95v3.32a8.33 8.33 0 0 1-4.56 1.1c-4.01 0-6.83-2.5-6.83-7.48 0-4.19 2.39-7.52 6.3-7.52 3.92 0 5.96 3.28 5.96 7.5 0 .4-.04 1.26-.06 1.48zm-5.92-5.62c-1.03 0-2.17.73-2.17 2.58h4.25c0-1.85-1.07-2.58-2.08-2.58zM40.95 20.3c-1.44 0-2.32-.6-2.9-1.04l-.02 4.63-4.12.87V5.57h3.76l.08 1.02a4.7 4.7 0 0 1 3.23-1.29c2.9 0 5.62 2.6 5.62 7.4 0 5.23-2.7 7.6-5.65 7.6zM40 8.95c-.95 0-1.54.34-1.97.81l.02 6.12c.4.44.98.78 1.95.78 1.52 0 2.54-1.65 2.54-3.87 0-2.15-1.04-3.84-2.54-3.84zM28.24 5.57h4.13v14.44h-4.13V5.57zm0-5.13L32.37 0v3.77l-4.13.88V.44zm-4.32 9.35v10.22H19.8V5.57h3.7l.12 1.22c1-1.77 3.07-1.41 3.62-1.22v3.79c-.52-.17-2.29-.43-3.32.43zm-8.55 4.72c0 2.43 2.6 1.68 3.12 1.46v3.36c-.55.3-1.54.54-2.89.54a4.15 4.15 0 0 1-4.27-4.24l.01-13.17 4.02-.86v3.54h3.14V9.1h-3.13v5.41zm-4.91.7c0 3.05-2.84 5.22-7.09 5.22-2.41 0-4.89-.73-6.68-2.06l1.79-3.28a8.1 8.1 0 0 0 4.92 1.7c1.16 0 1.94-.26 1.94-.92 0-1.62-7.71-.63-7.71-5.74 0-2.96 2.54-5.3 6.65-5.3 2.26 0 4.29.56 5.88 1.58l-1.69 3.22a7.78 7.78 0 0 0-4.18-1.3c-1.34 0-1.81.37-1.81.88 0 1.63 7.7.54 7.98 5.9z" fill-rule="evenodd"></path></svg>
+                <span>Secure payment</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content reveal">
+            <h2>Let's Connect</h2>
+            <p>Follow for style inspo and behind-the-scenes content</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/_luxehairplug/" target="_blank" class="social-link">
+                    📸 @_luxehairplug
+                </a>
+                <a href="#booking" class="social-link" style="background: linear-gradient(135deg, var(--pink-hot), var(--purple-deep)); border: none;">
+                    💕 Book Now - $20 Deposit
+                </a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 1rem; opacity: 0.9;">
+                DM me on Instagram or book directly here!<br>
+                <strong>$20 non-refundable deposit</strong> secures your appointment
+            </p>
+            <p class="footer-love">Made with 💕 by Luxehairplug</p>
+        </div>
+    </section>
+
+    <script>
+        // ============================================
+        // STRIPE CONFIGURATION
+        // ============================================
+        // IMPORTANT: Replace with your actual Stripe PUBLISHABLE key
+        // Get your key from: https://dashboard.stripe.com/apikeys
+        const STRIPE_PUBLISHABLE_KEY = 'pk_test_YOUR_PUBLISHABLE_KEY_HERE';
+        const DEPOSIT_AMOUNT = 20; // $20 deposit for all services
+        const API_URL = ''; // Leave empty for same-origin, or set to your server URL
+
+        // Service prices mapping
+        const servicePrices = {
+            'wig-install': { name: 'Wig Install', price: 50 },
+            'wig-install-style': { name: 'Wig Install + Style', price: 60 },
+            'qw-middle-side': { name: 'Quick Weave Middle/Side Part', price: 70 },
+            'qw-fulani': { name: 'Fulani Quick Weave', price: 85 },
+            'island-small': { name: 'Island Twist Small', price: 115 },
+            'island-medium': { name: 'Island Twist Medium', price: 100 },
+            'softlocs-small': { name: 'Soft Locs Small', price: 130 },
+            'softlocs-medium': { name: 'Soft Locs Medium', price: 100 },
+            'knotless-xs': { name: 'Knotless Xtra Small', price: 180 },
+            'knotless-small': { name: 'Knotless Small', price: 130 },
+            'knotless-medium': { name: 'Knotless Medium', price: 115 },
+            'knotless-large': { name: 'Knotless Large', price: 90 },
+            'knotless-bob': { name: 'Knotless Bob', price: 100 },
+            'stitch-small-freestyle': { name: 'Stitch Braids Small Freestyle', price: 115 },
+            'stitch-freestyle': { name: 'Stitch Braids Freestyle', price: 105 },
+            'stitch-fulani': { name: 'Fulani Braids', price: 115 },
+            'stitch-2braids': { name: '2 Braids', price: 40 },
+            'natural-cornrows': { name: "Men's Cornrows", price: 45 },
+            'natural-plaits': { name: 'Plaits', price: 60 },
+            'natural-twist': { name: 'Twist', price: 45 },
+            'locs-starter': { name: 'Starter Locs', price: 65 },
+            'locs-retwist': { name: 'Retwist', price: 45 },
+            'locs-twostrand': { name: 'Two Strand', price: 65 },
+            'locs-barrels': { name: 'Barrels', price: 75 }
+        };
+
+        // Current booking data
+        let currentBooking = {
+            service: null,
+            serviceName: '',
+            price: 0,
+            date: '',
+            name: '',
+            phone: '',
+            instagram: '',
+            email: '',
+            notes: ''
+        };
+
+        // ============================================
+        // STRIPE INITIALIZATION
+        // ============================================
+        let stripe, cardElement, elements;
+
+        function initStripe() {
+            if (STRIPE_PUBLISHABLE_KEY === 'pk_test_YOUR_PUBLISHABLE_KEY_HERE') {
+                console.warn('Stripe: Demo mode active. Replace STRIPE_PUBLISHABLE_KEY with your actual key.');
+                return false;
+            }
+
+            try {
+                stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+                elements = stripe.elements({
+                    fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600' }]
+                });
+
+                cardElement = elements.create('card', {
+                    style: {
+                        base: {
+                            fontFamily: 'Quicksand, sans-serif',
+                            fontSize: '16px',
+                            color: '#5C4033',
+                            '::placeholder': { color: '#8B6B5C' }
+                        },
+                        invalid: {
+                            color: '#e74c3c',
+                            iconColor: '#e74c3c'
+                        }
+                    }
+                });
+
+                cardElement.mount('#card-element');
+                cardElement.on('change', (event) => {
+                    const displayError = document.getElementById('card-errors');
+                    displayError.textContent = event.error ? event.error.message : '';
+                });
+
+                return true;
+            } catch (e) {
+                console.error('Stripe initialization error:', e);
+                return false;
+            }
+        }
+
+        // ============================================
+        // MOBILE MENU
+        // ============================================
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        // ============================================
+        // SCROLL REVEAL ANIMATION
+        // ============================================
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        // ============================================
+        // CURSOR SPARKLE EFFECT
+        // ============================================
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.85) {
+                createSparkle(e.clientX, e.clientY);
+            }
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.style.cssText = `
+                position: fixed;
+                width: ${Math.random() * 8 + 4}px;
+                height: ${Math.random() * 8 + 4}px;
+                background: radial-gradient(circle, #FFD700 0%, transparent 70%);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                left: ${x}px;
+                top: ${y}px;
+                opacity: 1;
+                transition: all 0.6s ease;
+            `;
+            document.body.appendChild(sparkle);
+            setTimeout(() => {
+                sparkle.style.opacity = '0';
+                sparkle.style.transform = 'translateY(-20px) scale(0)';
+            }, 50);
+            setTimeout(() => sparkle.remove(), 600);
+        }
+
+        // ============================================
+        // SERVICE SELECTION HANDLER
+        // ============================================
+        const serviceSelect = document.getElementById('service');
+        const depositInfo = document.getElementById('depositInfo');
+        const paymentOptions = document.getElementById('paymentOptions');
+        const defaultSubmit = document.getElementById('defaultSubmit');
+        const serviceTotal = document.getElementById('serviceTotal');
+
+        serviceSelect.addEventListener('change', function() {
+            const serviceId = this.value;
+
+            if (serviceId && servicePrices[serviceId]) {
+                const service = servicePrices[serviceId];
+                currentBooking.service = serviceId;
+                currentBooking.serviceName = service.name;
+                currentBooking.price = service.price;
+
+                serviceTotal.textContent = '$' + service.price;
+                depositInfo.classList.add('visible');
+                paymentOptions.style.display = 'flex';
+                defaultSubmit.style.display = 'none';
+            } else {
+                depositInfo.classList.remove('visible');
+                paymentOptions.style.display = 'none';
+                defaultSubmit.style.display = 'block';
+                currentBooking.service = null;
+            }
+        });
+
+        // ============================================
+        // PAYMENT MODAL
+        // ============================================
+        function openPaymentModal() {
+            // Validate form first
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+
+            if (!name || !phone || !date || !currentBooking.service) {
+                alert('Please fill in all required fields before paying.');
+                return;
+            }
+
+            // Store booking data
+            currentBooking.name = name;
+            currentBooking.phone = phone;
+            currentBooking.date = date;
+            currentBooking.instagram = document.getElementById('instagram').value;
+            currentBooking.notes = document.getElementById('notes').value;
+
+            // Update modal
+            document.getElementById('modalServiceName').textContent = currentBooking.serviceName;
+            document.getElementById('modalDate').textContent = formatDate(date);
+
+            // Show modal
+            document.getElementById('paymentModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Initialize Stripe if not already
+            if (!cardElement) {
+                initStripe();
+            }
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr + 'T00:00:00');
+            return date.toLocaleDateString('en-US', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        // Close modal on outside click
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) closePaymentModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePaymentModal();
+        });
+
+        // ============================================
+        // PAYMENT FORM SUBMISSION - REAL STRIPE INTEGRATION
+        // ============================================
+        document.getElementById('payment-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const payBtn = document.getElementById('payBtn');
+            const form = this;
+            const errorDisplay = document.getElementById('card-errors');
+
+            // Check if Stripe is configured
+            if (STRIPE_PUBLISHABLE_KEY === 'pk_test_YOUR_PUBLISHABLE_KEY_HERE') {
+                // Demo mode - simulate successful payment
+                payBtn.textContent = 'Processing...';
+                form.classList.add('processing');
+                setTimeout(() => showPaymentSuccess(true), 2000);
+                return;
+            }
+
+            // Disable button and show processing
+            payBtn.disabled = true;
+            payBtn.textContent = 'Processing...';
+            form.classList.add('processing');
+            errorDisplay.textContent = '';
+
+            try {
+                // Step 1: Create PaymentIntent on the server
+                const response = await fetch(`${API_URL}/create-payment-intent`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ booking: currentBooking })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to create payment');
+                }
+
+                const { clientSecret, paymentIntentId } = await response.json();
+
+                // Step 2: Confirm the payment with Stripe
+                const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: cardElement,
+                        billing_details: {
+                            name: currentBooking.name,
+                            phone: currentBooking.phone
+                        }
+                    }
+                });
+
+                if (error) {
+                    // Payment failed
+                    throw new Error(error.message);
+                }
+
+                if (paymentIntent.status === 'succeeded') {
+                    // Payment successful!
+                    showPaymentSuccess(false, paymentIntentId);
+                } else {
+                    throw new Error('Payment was not completed. Please try again.');
+                }
+
+            } catch (error) {
+                console.error('Payment error:', error);
+                errorDisplay.textContent = error.message;
+                payBtn.disabled = false;
+                payBtn.textContent = 'Pay $20 Deposit';
+                form.classList.remove('processing');
+            }
+        });
+
+        function showPaymentSuccess(isDemo = false, paymentId = null) {
+            closePaymentModal();
+
+            const bookingForm = document.getElementById('bookingForm');
+            const demoNotice = isDemo ? `
+                <p style="background: #FFF0B3; padding: 1rem; border-radius: 10px; font-size: 0.85rem; margin-top: 1rem;">
+                    <strong>Demo Mode:</strong> To accept real payments, add your Stripe API keys and run the server.
+                </p>
+            ` : '';
+
+            const confirmationId = paymentId ? `
+                <p style="color: #8B6B5C; font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">
+                    Confirmation: ${paymentId.slice(-8).toUpperCase()}
+                </p>
+            ` : '';
+
+            bookingForm.innerHTML = `
+                <div style="text-align: center; padding: 3rem;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">💕</div>
+                    <h3 style="font-family: 'Italiana', serif; font-size: 1.8rem; margin-bottom: 1rem; color: #5C4033;">
+                        You're All Booked!
+                    </h3>
+                    <p style="color: #8B6B5C; margin-bottom: 0.5rem;">
+                        <strong>$${DEPOSIT_AMOUNT} deposit paid</strong> - Thank you!
+                    </p>
+                    <p style="color: #8B6B5C; margin-bottom: 1.5rem;">
+                        ${currentBooking.serviceName} on ${formatDate(currentBooking.date)}
+                    </p>
+                    <p style="color: #8B6B5C; font-size: 0.95rem;">
+                        I'll text you at <strong>${currentBooking.phone}</strong> to confirm your exact appointment time!
+                    </p>
+                    <p style="color: #9B5DE5; font-size: 0.9rem; margin-top: 1rem;">
+                        Remaining balance of <strong>$${currentBooking.price - DEPOSIT_AMOUNT}</strong> due at appointment
+                    </p>
+                    ${confirmationId}
+                    ${demoNotice}
+                </div>
+            `;
+        }
+
+        // ============================================
+        // BOOKING FORM (REQUEST ONLY - NO PAYMENT)
+        // ============================================
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const form = this;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const serviceId = document.getElementById('service').value;
+            const date = document.getElementById('date').value;
+
+            if (!name || !phone || !serviceId || !date) {
+                return;
+            }
+
+            const serviceName = servicePrices[serviceId]?.name || 'Service';
+
+            form.innerHTML = `
+                <div style="text-align: center; padding: 3rem;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">💕</div>
+                    <h3 style="font-family: 'Italiana', serif; font-size: 1.5rem; margin-bottom: 1rem; color: #5C4033;">
+                        Booking Request Sent!
+                    </h3>
+                    <p style="color: #8B6B5C; margin-bottom: 1rem;">
+                        ${serviceName} on ${formatDate(date)}
+                    </p>
+                    <p style="color: #8B6B5C;">
+                        I'll text you at <strong>${phone}</strong> to confirm your appointment!
+                    </p>
+                    <p style="color: #9B5DE5; font-size: 0.9rem; margin-top: 1.5rem;">
+                        Tip: Pay the $20 deposit to secure your spot faster!
+                    </p>
+                </div>
+            `;
+        });
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+        // Set minimum date to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // Add floating animation delays
+        const floatingElements = document.querySelectorAll('.floating-decor');
+        floatingElements.forEach((el, i) => {
+            el.style.animationDelay = `${i * 0.5}s`;
+        });
+
+        // Log startup info
+        console.log('Luxehairplug loaded');
+        console.log('Stripe configured:', STRIPE_PUBLISHABLE_KEY !== 'pk_test_YOUR_PUBLISHABLE_KEY_HERE');
+    </script>
+</body>
+</html>
